@@ -1,8 +1,8 @@
 package mysql
 
 import (
-	"github.com/rinard84/auth-service/models/types"
-	api "github.com/rinard84/proto/api/auth"
+	"github.com/quangdangfit/goauth/models/types"
+	api "github.com/quangdangfit/goauth/proto/api/auth"
 	"gorm.io/gorm"
 )
 

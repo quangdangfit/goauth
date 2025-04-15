@@ -6,8 +6,8 @@ import (
 	"log"
 	"strings"
 
-	"github.com/rinard84/gokit/library/conf"
-	"github.com/rinard84/gokit/library/database"
+	"github.com/quangdangfit/gokit/library/conf"
+	"github.com/quangdangfit/gokit/library/database"
 	"github.com/spf13/viper"
 )
 

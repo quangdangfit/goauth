@@ -3,9 +3,9 @@ package controllers
 import (
 	"context"
 
-	models "github.com/rinard84/auth-service/models/mysql"
-	"github.com/rinard84/auth-service/utils"
-	api "github.com/rinard84/proto/api/auth"
+	models "github.com/quangdangfit/goauth/models/mysql"
+	api "github.com/quangdangfit/goauth/proto/api/auth"
+	"github.com/quangdangfit/goauth/utils"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

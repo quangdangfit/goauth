@@ -1,0 +1,7 @@
+BasedOnStyle: LLVM
+IndentWidth: 2
+Language: Proto
+ColumnLimit: 100
+SpaceBeforeCaseColon: false
+AlignConsecutiveAssignments:
+  Enabled: true

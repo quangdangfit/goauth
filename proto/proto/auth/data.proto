@@ -1,0 +1,205 @@
+syntax = "proto3";
+package backend.auth.api;
+import "validate/validate.proto";
+import "common/common.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+enum VerificationMethod {
+  VerificationMethodEmail = 0;
+  VerificationMethodPhone = 1;
+}
+
+message User {
+  int64 id            = 1;
+  string username     = 2;
+  string name         = 3;
+  string phone        = 4;
+  string email        = 5;
+  bool verified_phone = 6;
+  bool verified_email = 7;
+}
+
+message Permission {
+  string name         = 1;
+  string group        = 2;
+  string parent       = 3;
+  string api_method   = 4;
+  string api_endpoint = 5;
+}
+
+message RegisterRequest {
+  string username = 1 [ (validate.rules).string = {min_len : 1} ];
+  string password = 2 [ (validate.rules).string = {min_len : 1} ];
+  string name     = 3;
+  string phone    = 4;
+  string email    = 5;
+}
+message RegisterResponse {
+  int32 code     = 1;
+  string message = 2;
+  User data      = 3;
+}
+
+message LoginRequest {
+  string username = 1 [ (validate.rules).string = {min_len : 1} ];
+  string password = 2 [ (validate.rules).string = {min_len : 1} ];
+}
+message LoginResponse {
+  message Data {
+    string access_token  = 1;
+    string refresh_token = 2;
+  }
+
+  int32 code     = 1;
+  string message = 2;
+  Data data      = 3;
+}
+
+message RefreshTokenRequest {
+  string access_token  = 1 [ (validate.rules).string = {min_len : 1} ];
+  string refresh_token = 2 [ (validate.rules).string = {min_len : 1} ];
+}
+message RefreshTokenResponse {
+  message Data {
+    string access_token  = 1;
+    string refresh_token = 2;
+  }
+
+  int32 code     = 1;
+  string message = 2;
+  Data data      = 3;
+}
+
+message ChangePasswordRequest {
+  string username     = 1 [ (validate.rules).string = {min_len : 1} ];
+  string password     = 2 [ (validate.rules).string = {min_len : 1} ];
+  string new_password = 3 [ (validate.rules).string = {min_len : 1} ];
+}
+message ChangePasswordResponse {
+  int32 code     = 1;
+  string message = 2;
+}
+
+message ResetPasswordRequest {
+  string username           = 1 [ (validate.rules).string = {min_len : 1} ];
+  VerificationMethod method = 2;
+  string ref_code           = 3;
+  string verification_code  = 4;
+  string new_password       = 5;
+}
+message ResetPasswordResponse {
+  message Data { optional string ref_code = 1; }
+
+  int32 code     = 1;
+  string message = 2;
+  Data data      = 3;
+}
+
+message UpdateUserProfileRequest {
+  string name  = 1;
+  string phone = 2;
+  string email = 3;
+}
+message UpdateUserProfileResponse {
+  int32 code     = 1;
+  string message = 2;
+  User data      = 3;
+}
+
+message GetUserProfileRequest {}
+message GetUserProfileResponse {
+  int32 code     = 1;
+  string message = 2;
+  User data      = 3;
+}
+
+message VerifyAccountRequest {
+  VerificationMethod method = 1;
+  string ref_code           = 2;
+  string verification_code  = 3;
+}
+message VerifyAccountResponse {
+  int32 code     = 1;
+  string message = 2;
+  message Data { optional string ref_code = 1; }
+}
+
+message DeactivateAccountRequest {
+  VerificationMethod method = 1;
+  string ref_code           = 2;
+  string verification_code  = 3;
+}
+message DeactivateAccountResponse {
+  int32 code     = 1;
+  string message = 2;
+  message Data { optional string ref_code = 1; }
+}
+
+message CreatePermissionRequest {
+  string name         = 1;
+  string group        = 2;
+  string parent       = 3;
+  string api_method   = 4;
+  string api_endpoint = 5;
+}
+message CreatePermissionResponse {
+  int32 code     = 1;
+  string message = 2;
+}
+
+message ListPermissionRequest {}
+message ListPermissionResponse {
+  int32 code               = 1;
+  string message           = 2;
+  repeated Permission data = 3;
+}
+
+message CreateUserRequest {
+  string username = 1;
+  string password = 2;
+  string name     = 3;
+  string phone    = 4;
+  string email    = 5;
+}
+message CreateUserResponse {
+  int32 code     = 1;
+  string message = 2;
+  User data      = 3;
+}
+
+message ListUserRequest {}
+message ListUserResponse {
+  int32 code         = 1;
+  string message     = 2;
+  repeated User data = 3;
+}
+
+message RegisterDeviceRequest {
+  string device_id   = 1 [ (validate.rules).string = {min_len : 1} ];
+  string device_name = 2 [ (validate.rules).string = {min_len : 1} ];
+  string fcm_token   = 3 [ (validate.rules).string = {min_len : 1} ];
+}
+message RegisterDeviceResponse {
+  int32 code     = 1;
+  string message = 2;
+}
+
+message UnregisterDeviceRequest {
+  string device_id = 1 [ (validate.rules).string = {min_len : 1} ];
+}
+message UnregisterDeviceResponse {
+  int32 code     = 1;
+  string message = 2;
+}
+
+message ListDeviceRequest {}
+message ListDeviceResponse {
+  message Data {
+    string device_id   = 1;
+    string device_name = 2;
+  }
+  int32 code         = 1;
+  string message     = 2;
+  repeated Data data = 3;
+}

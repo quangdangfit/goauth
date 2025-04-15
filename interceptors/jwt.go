@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/go-logr/logr"
-	"github.com/rinard84/auth-service/config"
+	"github.com/quangdangfit/goauth/config"
 	"google.golang.org/grpc"
 )
 

@@ -1,6 +1,6 @@
 package utils
 
-import commonPb "github.com/rinard84/proto/api/common"
+import commonPb "github.com/quangdangfit/goauth/proto/api/common"
 
 const DefaultLimit = 100
 const MaxLimit = 5000

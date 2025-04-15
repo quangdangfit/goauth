@@ -1,0 +1,102 @@
+syntax = "proto3";
+package backend.auth.api;
+import "google/api/annotations.proto";
+import "auth/data.proto";
+
+service AuthService {
+  // Authentication
+  rpc Register(RegisterRequest) returns (RegisterResponse) {
+    option (google.api.http) = {
+      put : "/api/v1/register",
+      body : "*",
+    };
+  }
+  rpc Login(LoginRequest) returns (LoginResponse) {
+    option (google.api.http) = {
+      post : "/api/v1/login",
+      body : "*",
+    };
+  }
+  rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse) {
+    option (google.api.http) = {
+      post : "/api/v1/refresh-token",
+      body : "*",
+    };
+  }
+  rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse) {
+    option (google.api.http) = {
+      post : "/api/v1/reset-password",
+      body : "*",
+    };
+  }
+  rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse) {
+    option (google.api.http) = {
+      post : "/api/v1/private/change-password",
+      body : "*",
+    };
+  }
+  rpc UpdateUserProfile(UpdateUserProfileRequest) returns (UpdateUserProfileResponse) {
+    option (google.api.http) = {
+      put : "/api/v1/private/profile",
+      body : "*",
+    };
+  }
+  rpc GetUserProfile(GetUserProfileRequest) returns (GetUserProfileResponse) {
+    option (google.api.http) = {
+      get : "/api/v1/private/profile",
+    };
+  }
+  rpc VerifyAccount(VerifyAccountRequest) returns (VerifyAccountResponse) {
+    option (google.api.http) = {
+      get : "/api/v1/private/verify",
+    };
+  }
+  rpc DeactivateAccount(DeactivateAccountRequest) returns (DeactivateAccountResponse) {
+    option (google.api.http) = {
+      get : "/api/v1/private/deactivate",
+    };
+  }
+
+  // Authorization
+  rpc CreatePermission(CreatePermissionRequest) returns (CreatePermissionResponse) {
+    option (google.api.http) = {
+      post : "/api/v1/admin/permissions",
+      body : "*",
+    };
+  }
+  rpc ListPermission(ListPermissionRequest) returns (ListPermissionResponse) {
+    option (google.api.http) = {
+      get : "/api/v1/admin/permissions",
+    };
+  }
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {
+    option (google.api.http) = {
+      post : "/api/v1/admin/users",
+      body : "*",
+    };
+  }
+  rpc ListUser(ListUserRequest) returns (ListUserResponse) {
+    option (google.api.http) = {
+      get : "/api/v1/admin/users",
+    };
+  }
+
+  // Device
+  rpc RegisterDevice(RegisterDeviceRequest) returns (RegisterDeviceResponse) {
+    option (google.api.http) = {
+      post : "/api/v1/private/register-device",
+      body : "*",
+    };
+  }
+  rpc UnregisterDevice(UnregisterDeviceRequest) returns (UnregisterDeviceResponse) {
+    option (google.api.http) = {
+      post : "/api/v1/private/unregister-device",
+      body : "*",
+    };
+  }
+  rpc ListDevice(ListDeviceRequest) returns (ListDeviceResponse) {
+    option (google.api.http) = {
+      get : "/api/v1/private/devices",
+    };
+  }
+}

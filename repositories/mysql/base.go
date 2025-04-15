@@ -5,8 +5,8 @@ import (
 	"time"
 
 	"github.com/go-logr/logr"
-	"github.com/rinard84/auth-service/config"
-	"github.com/rinard84/gokit/library/database"
+	"github.com/quangdangfit/goauth/config"
+	"github.com/quangdangfit/gokit/library/database"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	gormlog "gorm.io/gorm/logger"

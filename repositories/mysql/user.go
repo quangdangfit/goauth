@@ -2,9 +2,9 @@ package mysql
 
 import (
 	"github.com/go-logr/logr"
-	"github.com/rinard84/auth-service/config"
-	models "github.com/rinard84/auth-service/models/mysql"
-	"github.com/rinard84/auth-service/repositories"
+	"github.com/quangdangfit/goauth/config"
+	models "github.com/quangdangfit/goauth/models/mysql"
+	"github.com/quangdangfit/goauth/repositories"
 	"gorm.io/gorm"
 )
 

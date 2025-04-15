@@ -1,0 +1,9 @@
+syntax = "proto3";
+package backend.common;
+
+message PaginationResponse {
+  int32 page   = 1;
+  int32 total  = 2;
+  int32 offset = 3;
+  int32 limit  = 4;
+}
