@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "go",
+            "name": "Go configuration",
+            "goExecPath": "~/Developers/src/rinard84/auth-service/cmd/api/main.go",
+            "buildParams": []
+        }
+    ]
+}

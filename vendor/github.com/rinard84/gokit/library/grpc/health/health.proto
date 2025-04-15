@@ -1,0 +1,40 @@
+syntax = "proto3";
+package kit.health;
+option go_package = "github.com/rinard84/gokit/library/grpc/health";
+
+import "google/api/annotations.proto";
+
+// HeathCheckService provide health check RPC and endpoint to check service status
+service HealthCheckService {
+
+    //Liveness handle application port open check
+    rpc Liveness(LivenessRequest) returns (LivenessResponse) {
+        option (google.api.http) = {
+            get: "/health/live"
+        };
+    }
+    // Readiness handle ready service check health
+    rpc Readiness(ReadinessRequest) returns (ReadinessResponse) {
+        option (google.api.http) = {
+            get: "/health/ready"
+        };
+    }
+}
+
+// LivenessRequest ...
+message LivenessRequest {}
+
+// ReadinessResponse ...
+message ReadinessRequest {}
+
+/// LivenessRequest ...
+message LivenessResponse {
+    // content
+    string content = 1 [ json_name = "content" ];
+}
+
+// ReadinessResponse
+message ReadinessResponse {
+    // content
+    string content = 1 [ json_name = "content" ];
+}

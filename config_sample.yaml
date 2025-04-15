@@ -1,0 +1,45 @@
+env: prod
+log:
+  level: error
+service_name: gotrans-service
+server:
+  grpc:
+    port: 6000
+  http:
+    port: 6100
+
+mysql:
+  host: localhost
+  port: 3306
+  database: gotrans
+  username: root
+  password: ''
+  options: 'checkConnLiveness=false&loc=UTC&parseTime=true&maxAllowedPacket=0'
+  protocol: tcp
+
+redis:
+  addr: localhost:6379
+  password:
+  db: 0
+
+kafka:
+  broker: 'localhost:9192,localhost:9292,localhost:9392'
+  consumers:
+    create_transaction:
+      topic: demo
+      group_id: transaction
+      session_timeout: 6000
+      offset_reset_type: earliest
+      offset_store: false
+
+mongo:
+  uri: mongodb://username:password@host:27017
+  database: gotrans
+
+clickhouse:
+  host: host
+  port: 9000
+  database: gotrans
+  username: username
+  password: password
+  options: 'dial_timeout=100s&read_timeout=20s'
